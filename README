@@ -1,0 +1,11 @@
+A client-server application for calculating sums and products of all integers between two selected (inclusive) numbers from the range 1 to 1000.
+
+# Build client image
+docker build -t calc-client -f Dockerfile .
+
+# The server is started in the calculation-net network
+# Wait for the server to start
+
+To start the client:
+# Start the client in the calculation-net network
+docker run -it --rm --name calculation-client --network calculation-net -e SERVER_HOST=calculation-server calc-client

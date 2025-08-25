@@ -1,0 +1,21 @@
+services:
+  calculation-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - calculation-net
+    stdin_open: true
+    tty: true
+    environment:
+      - SERVER_HOST=calculation-server
+    labels:
+      - "author=Daria Lyazgina"
+      - "email=daria.lyazgina@gmail.com"
+      - "maintainer=Daria Lyazgina"
+    depends_on:
+      - calculation-server
+
+networks:
+  calculation-net:
+    driver: bridge
