@@ -1,14 +1,13 @@
 services:
   calculation-client:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: lyazginad/calc:client
     networks:
       - calculation-net
     stdin_open: true
     tty: true
     environment:
       - SERVER_HOST=calculation-server
+    container_name: calculation-client
     labels:
       - "author=Daria Lyazgina"
       - "email=daria.lyazgina@gmail.com"

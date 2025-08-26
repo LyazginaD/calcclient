@@ -13,12 +13,14 @@ LABEL description="Calculator Server Application"
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
-RUN mvn clean package -DskipTests
+RUN mvn clean package surefire-report:report
 
 FROM eclipse-temurin:21-jre-jammy
 LABEL auto-remove="true"
 WORKDIR /app
 COPY --from=builder /app/target/calcclient-1.0-SNAPSHOT.jar app.jar
+
+EXPOSE 8081
 
 # Точка входа - запускаем скопированный JAR
 CMD ["java", "-jar", "app.jar", "Client" ]
